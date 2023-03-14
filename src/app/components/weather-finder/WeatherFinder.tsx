@@ -17,17 +17,17 @@ interface WeatherFinderProps {
 export default function WeatherFinder({
   setWeatherResponse,
 }: WeatherFinderProps) {
-  const [inputValue, setInputvalue] = useState("");
+  const [inputValue, setInputValue] = useState("");
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setInputvalue(value);
+    setInputValue(value);
   };
 
   const onSearch = async () => {
     const data = await (await fetch(`${API_URL}?name=${inputValue}`)).json();
     console.log(data);
-    setWeatherResponse?.(data.data[0]);
+    setWeatherResponse?.(data.data[0] ?? null);
   };
 
   return (
